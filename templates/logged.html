@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static './index.css' %}">
+</head>
+<body>
+    <div id="side"></div>
+    <div id="tmt">Take My Tickets Portal</div>
+    <div id="cur"></div>
+    <div id="cur1">
+        <div id="curtext">Venues</div>
+    </div>
+    <div id="cur2">
+        <div id="curtext">Events</div>
+    </div>
+    <div id="admtxt">Admin</div>
+    <div id="admin">admin@takemytickets.com</div>
+    <div id="frame">
+        
+        <div id="rect"></div>
+        <div id="frt">Log out</div>
+        
+    </div>
+    <div id="right">
+        <div id="grp6">
+            <div id="search">   
+                <label for="gsearch" id="ls">Search</label>
+                <input type="search" id="gsearch" name="gsearch" placeholder="Search for events">
+            </div>
+            <div id="city">
+                <label for="cities" id="ls">City</label>
+
+                <select name="cities" id="cities">
+                    <option disabled selected value>All</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bangalore">Bangalore</option>
+
+                </select>
+            </div>
+            <div id="status">
+                <label for="stat" id="ls" class="st">Status</label>
+
+                <select name="stat" id="stat">
+                    <option disabled selected value>All</option>
+                    <option value="Comingup">Coming-Up</option>
+                    <option value="Mumbai">Expired</option>
+                
+                </select>
+            </div>
+        </div>
+        <form action="new" method="post">
+            {% csrf_token %}
+            <div id="addev">
+                <input type="submit" value="+ Add Event" id="addevbtn">
+            </div>
+            
+        </form>
+        <div id="table">
+            <div id="tc">
+                <table>
+                    <tr>
+                    <th></th>
+                    <th>Event </th>
+                    <th>Artist</th>
+                    <th>City</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Created</th>
+                    <th>Status</th>
+                    </tr>
+                    
+                    {% for i in lists %}
+                    
+                    <tr>
+                    <td><img src="{% static i.url %}" alt=""></td>
+                    <td><p id="pname">{{i.event}}</p><p id="pven">{{i.venue}}</p></td>
+                    <td>{{i.artist}}</td>
+                    <td>{{i.city}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.time}}</td>
+                    <td>{{i.created}}</td>
+                    <td>{{i.status}}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+ 
+</body>
+</html>
